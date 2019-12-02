@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { AddtaskComponent } from './addtask/addtask.component';
 import { UpdatetaskComponent } from './updatetask/updatetask.component';
 import { ViewtaskComponent } from './viewtask/viewtask.component';
+import { RouterModule } from '@angular/router';
+import {FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,11 @@ import { ViewtaskComponent } from './viewtask/viewtask.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    RouterModule.forRoot([
+      {path: 'addtask', component: AddtaskComponent},
+      {path:'', redirectTo:'addtask', pathMatch: 'full'},
+      {path: 'viewtask', component: ViewtaskComponent}]),
   ],
   providers: [],
   bootstrap: [AppComponent]
