@@ -1,1 +1,100 @@
-<p>viewtask works!</p>
+<div class="pb-2 mt-4 mb-2 border-bottom">
+    <h3>View Tasks</h3>
+</div>
+<form>
+    <div class="form-row form-inline">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="taskName" class="col-md-3 col-form-label">Task</label>
+                <div class="col-md-9">
+                    <input type="text" class="col-md-12" id=taskName />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="parenttaskName" class="col-md-3 col-form-label">Parent Task</label>
+                <div class="col-md-8">
+                    <input type="text" class="col-md-12" id=parenttaskName />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row form-inline">
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label for="priorityFrom" class="col-md-7 col-form-label">Priority From</label>
+                <div class="col-sm-5">
+                    <input type="text" class="col-md-12" id=priorityFrom />
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label for="priorityTo" class="col-md-7 col-form-label">Priority To</label>
+                <div class="col-sm-5">
+                    <input type="text" class="col-md-12" id=priorityTo />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="startDate" class="col-sm-5 col-form-label padding-align">Start Date</label>
+                <div class="col-sm-7 padding-align">
+                    <input type="date" class="form-control padding-right" id=startDate />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="endDate" class="col-sm-5 col-form-label padding-align">End Date</label>
+                <div class="col-sm-7 padding-align">
+                    <input type="date" class="form-control padding-right" id=endDate />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Task</th>
+            <th>Parent</th>
+            <th>Priority</th>
+            <th>Start</th>
+            <th>End</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td></td>
+            <td>
+                <div class="card">
+                    <div class="card-body">Task001</div>
+                </div>
+            </td>
+            <td>
+                <!-- <span></span> -->
+                <div class="card" style="width:12rem">
+                    <div class="card-body">Parent001</div>
+                </div>
+            </td>
+            <td>5</td>
+            <td>12/01/2019</td>
+            <td>12/05/2019</td>
+            <td>
+                <div class="form-group">
+                    <div class="form-group">
+                        <button class="btn btn-secondary btn-sm" [routerLink]="['/updatetask']">Edit </button> 
+                        <button class="btn btn-secondary btn-sm">End Task </button>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<router-outlet></router-outlet>

@@ -22,7 +22,8 @@ import {FormsModule } from '@angular/forms';
     RouterModule.forRoot([
       {path: 'addtask', component: AddtaskComponent},
       {path:'', redirectTo:'addtask', pathMatch: 'full'},
-      {path: 'viewtask', component: ViewtaskComponent}]),
+      {path: 'viewtask', component: ViewtaskComponent},
+      {path: 'updatetask', component: UpdatetaskComponent}]),
   ],
   providers: [],
   bootstrap: [AppComponent]
