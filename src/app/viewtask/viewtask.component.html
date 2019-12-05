@@ -1,6 +1,4 @@
-<div class="pb-2 mt-4 mb-2 border-bottom">
-    <h3>View Tasks</h3>
-</div>
+
 <form>
     <div class="form-row form-inline">
         <div class="col-md-6">
@@ -39,17 +37,17 @@
         </div>
         <div class="col-md-3">
             <div class="form-group">
-                <label for="startDate" class="col-sm-5 col-form-label padding-align">Start Date</label>
+                <label for="startDate" class="col-sm-5 col-form-label">Start Date</label>
                 <div class="col-sm-7 padding-align">
-                    <input type="date" class="form-control padding-right" id=startDate />
+                    <input type="date" class="form-control date-width" style="width:100%" id=startDate />
                 </div>
             </div>
         </div>
         <div class="col-md-3">
             <div class="form-group">
-                <label for="endDate" class="col-sm-5 col-form-label padding-align">End Date</label>
+                <label for="endDate" class="col-sm-5 col-form-label">End Date</label>
                 <div class="col-sm-7 padding-align">
-                    <input type="date" class="form-control padding-right" id=endDate />
+                    <input type="date" class="form-control date-width" placeholder="false" style="width:100%" id=endDate />
                 </div>
             </div>
         </div>
@@ -78,7 +76,6 @@
                 </div>
             </td>
             <td>
-                <!-- <span></span> -->
                 <div class="card" style="width:12rem">
                     <div class="card-body">Parent001</div>
                 </div>
@@ -89,7 +86,7 @@
             <td>
                 <div class="form-group">
                     <div class="form-group">
-                        <button class="btn btn-secondary btn-sm" [routerLink]="['/updatetask']">Edit </button> 
+                        <button class="btn btn-secondary btn-sm mr-2" [routerLink]="['/updatetask']">Edit </button> 
                         <button class="btn btn-secondary btn-sm">End Task </button>
                     </div>
                 </div>
