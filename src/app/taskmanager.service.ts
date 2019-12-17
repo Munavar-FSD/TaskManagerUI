@@ -30,7 +30,7 @@ export class TaskmanagerService {
 
   getTaskDetails(): Observable<Task[]> {
     const contentType = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST,GET,OPTIONS,PUT,DELETE' }) };
-    return this.http.get<Task[]>(this.url, contentType);
+    return this.http.get<Task[]>(this.url+'AllTask', contentType);
   }
 
   addTaskDetails(newTask: Task): Observable<any> {

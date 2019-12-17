@@ -6,6 +6,6 @@ export class Task{
   Task:string;
   Start_Date:Date;
   End_Date:Date;
-  Priority:Date;
+  Priority:number;
   Status:string;
 }

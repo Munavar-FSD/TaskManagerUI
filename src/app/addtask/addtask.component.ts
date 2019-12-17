@@ -11,7 +11,9 @@ import { Task } from 'src/app/model/task';
   styleUrls: ['./addtask.component.css']
 })
 export class AddtaskComponent implements OnInit {
+  text='add task';
   taskDetails: Task;
+  submitted=false;
   constructor(private taskmanagerService: TaskmanagerService, private router: Router) { }
 
   ngOnInit() {
@@ -32,6 +34,10 @@ export class AddtaskComponent implements OnInit {
       taskList=>{
         console.log("Saved successfully...");
       });
+  }
+
+  onSubmit():void{
+    this.submitted=true;
   }
 
 }
