@@ -25,7 +25,7 @@ import {FormsModule } from '@angular/forms';
       {path: 'addtask', component: AddtaskComponent},
       {path:'', redirectTo:'addtask', pathMatch: 'full'},
       {path: 'viewtask', component: ViewtaskComponent},
-      {path: 'updatetask', component: UpdatetaskComponent}]),
+      {path: 'updatetask/:id/:pid', component: UpdatetaskComponent}]),
   ],
   providers: [],
   bootstrap: [AppComponent]

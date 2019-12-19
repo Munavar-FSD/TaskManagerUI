@@ -38,7 +38,7 @@
             <div class="form-group">
                 <label for="startDate" class="col-sm-5 col-form-label">Start Date</label>
                 <div class="col-sm-7 padding-align">
-                    <input type="date" class="form-control date-width" style="width:100%" id=startDate />
+                    <input type="date" class="form-control date-width" style="width:100%" id=startDate (input)="filterSearchByDate($event.target.value)" />
                 </div>
             </div>
         </div>
@@ -81,13 +81,13 @@
                 </div>
             </td>
             <td>{{task.Priority}}</td>
-            <td>{{task.Start_Date}}</td>
-            <td>{{task.End_Date}}</td>
+            <td>{{task.Start_Date | date:'dd/MM/yyyy'}}</td>
+            <td>{{task.End_Date | date:'dd/MM/yyyy'}}</td>
             <td>
                 <div class="form-group">
                     <div class="form-group">
-                        <button class="btn btn-secondary btn-sm mr-2" [routerLink]="['/updatetask']">Edit </button>
-                        <button class="btn btn-secondary btn-sm" (click)="DeleteTask('1')">End Task </button>
+                        <button class="btn btn-secondary btn-sm mr-2" [routerLink]="['/updatetask',task.Task_ID,task.Parent_ID]">Edit </button>
+                        <button class="btn btn-secondary btn-sm" (click)="DeleteTask(task.Task_ID)">End Task </button>
                     </div>
                 </div>
             </td>

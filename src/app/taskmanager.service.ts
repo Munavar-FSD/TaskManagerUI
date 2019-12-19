@@ -55,7 +55,7 @@ export class TaskmanagerService {
 
   updateTaskDetails(task: Task): Observable<Task> {
     const contentType = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST,GET,OPTIONS,PUT,DELETE' }) };
-    return this.http.put<Task>(this.url, task, contentType);
+    return this.http.put<Task>(this.url+"EditTaskById", task, contentType);
   }
 
   deleteTaskDetails(taskId: number): Observable<Task> {

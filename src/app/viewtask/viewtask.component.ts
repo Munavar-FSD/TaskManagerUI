@@ -55,17 +55,27 @@ export class ViewtaskComponent implements OnInit {
 
   onparentNameChange(event) {
     this.parentSearchString = event;
-    this.filterSearch();
+    this.filteredTask = this.tasks;
+    this.filteredTask = this.filteredTask.filter(x => Object.keys(x).some(y=>
+    String(x[y]).toLowerCase().includes(this.parentSearchString.toLowerCase())));
+    //this.filterSearch();
   }
   onpriorityFromChange(event) {
     this.priorityFromSearchString = event;
-    this.filterSearch();
+    // this.filteredTask = this.filteredTask.filter(x => Object.keys(x).some(y=>
+    //   Number(x[y]).toFixed().includes(this.priorityFromSearchString)));
+    //this.filterSearch();
   }
   onpriorityToChange(event) {
     this.priorityToSearchString = event;
     this.filterSearch();
   }
 
+  filterSearchByDate(event){
+    this.filteredTask = this.tasks;
+    this.filteredTask=this.filteredTask.filter(
+      m=> new Date(event)>=new Date(m.Start_Date))
+  }
   filterSearch() {
     this.filteredTask = this.tasks;
     //this.filteredTask = this.filteredTask.filter(x => { x.Task.startsWith(this.taskSearchString)
