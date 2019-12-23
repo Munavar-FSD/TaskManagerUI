@@ -11,7 +11,9 @@ import { Task } from "../app/model/task";
 
 export class TaskmanagerService {
 
-  private url = "http://localhost:50673/api/Task/";
+  public currentTaskDetails:Task;
+  private url = "http://localhost:8089/api/Task/";
+  //private url = "http://localhost:50673/api/Task/";
 
 
   constructor(private http: HttpClient) {
@@ -34,23 +36,17 @@ export class TaskmanagerService {
   }
 
   addTaskDetails(newTask: Task): Observable<any> {
-    const endpoint = 'http://localhost:50673/api/Task/';
+    const endpoint = 'http://localhost:8089/api/Task/';
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',// charset=utf-8', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST,GET,OPTIONS,PUT,DELETE'
+        'Content-Type': 'application/json',
       })
     };
     console.log(newTask);
-    return this.http.post<any>('http://localhost:50673/api/Task/AddTaskById', JSON.stringify(newTask), httpOptions).pipe(
+    return this.http.post<any>('http://localhost:8089/api/Task/AddTaskById', JSON.stringify(newTask), httpOptions).pipe(
       tap((product) => console.log(`added task`)),
       catchError(this.handleError)
     );
-    //const contentType = { headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' }) };
-    //const options={options:this.http.Requestoptions{}
-    //const contentType = { headers: new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8'})};//'application/x-www-form-urlencoded'})};//, 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST,GET,OPTIONS,PUT,DELETE' }) };
-    // var urlString = this.url + 'api/Task/AddTaskById';
-    // var posttaskdetails = JSON.stringify(newTask);
-    // return this.http.post<Task>(this.url + 'AddTaskById', JSON.stringify(posttaskdetails), contentType);
   }
 
   updateTaskDetails(task: Task): Observable<Task> {
@@ -59,8 +55,8 @@ export class TaskmanagerService {
   }
 
   deleteTaskDetails(taskId: number): Observable<Task> {
-    const contentType = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST,GET,OPTIONS,PUT,DELETE' }) };
-    return this.http.delete<Task>(this.url +'DeleteTaskManagerById?id=' + taskId, contentType);
+    const contentType = { headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST,GET,OPTIONS,PUT,DELETE' }) };
+    return this.http.get<Task>(this.url +'DeleteTaskById?taskid=' + taskId, contentType);
   }
 
   private handleError(error: any): Promise<any> {

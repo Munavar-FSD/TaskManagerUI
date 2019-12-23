@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-//import {ActivatedRoute } from '@angular/router';
 import { TaskmanagerService } from 'src/app/taskmanager.service';
 import { Task } from 'src/app/model/task';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-viewtask',
@@ -16,7 +16,7 @@ export class ViewtaskComponent implements OnInit {
   priorityToSearchString: number = 0;
   filteredTask: Task[] = [];
 
-  constructor(private taskmanagerService: TaskmanagerService) { }
+  constructor(private taskmanagerService: TaskmanagerService, private activatedRoute: ActivatedRoute, private route: Router) { }
 
   ngOnInit() {
     this.GetTaskDetails();
@@ -28,10 +28,16 @@ export class ViewtaskComponent implements OnInit {
       .subscribe(
         taskList => {
           this.tasks = taskList;
-          this.filteredTask=taskList;
+          this.filteredTask = taskList;
           console.log(this.tasks);
           console.log(taskList);
         });
+  }
+
+  public onUpdate(taskId) {
+    this.taskmanagerService.currentTaskDetails = this.tasks.find(x => x.Task_ID == taskId);
+    console.log(this.taskmanagerService.currentTaskDetails);
+    this.route.navigate(['/updatetask']);
   }
 
   public DeleteTask(taskName) {
@@ -40,7 +46,11 @@ export class ViewtaskComponent implements OnInit {
       .subscribe(
         taskList => {
           console.log("Deleted successfully...")
+          //alert("Task deleted successfully");
         });
+
+    this.GetTaskDetails();
+    alert("Task deleted successfully");
   }
 
   onSearchTaskManager(etaskName, eParentName, ePriority) {
@@ -56,47 +66,28 @@ export class ViewtaskComponent implements OnInit {
   onparentNameChange(event) {
     this.parentSearchString = event;
     this.filteredTask = this.tasks;
-    this.filteredTask = this.filteredTask.filter(x => Object.keys(x).some(y=>
-    String(x[y]).toLowerCase().includes(this.parentSearchString.toLowerCase())));
-    //this.filterSearch();
+    this.filteredTask = this.filteredTask.filter(x => Object.keys(x).some(y =>
+      String(x[y]).toLowerCase().includes(this.parentSearchString.toLowerCase())));
   }
   onpriorityFromChange(event) {
     this.priorityFromSearchString = event;
-    // this.filteredTask = this.filteredTask.filter(x => Object.keys(x).some(y=>
-    //   Number(x[y]).toFixed().includes(this.priorityFromSearchString)));
-    //this.filterSearch();
   }
   onpriorityToChange(event) {
     this.priorityToSearchString = event;
     this.filterSearch();
   }
 
-  filterSearchByDate(event){
+  filterSearchByDate(event) {
     this.filteredTask = this.tasks;
-    this.filteredTask=this.filteredTask.filter(
-      m=> new Date(event)>=new Date(m.Start_Date))
+    this.filteredTask = this.filteredTask.filter(
+      m => new Date(event) >= new Date(m.Start_Date))
   }
   filterSearch() {
     this.filteredTask = this.tasks;
-    //this.filteredTask = this.filteredTask.filter(x => { x.Task.startsWith(this.taskSearchString)
-    this.filteredTask = this.filteredTask.filter(x => Object.keys(x).some(y=>
-    String(x[y]).toLowerCase().includes(this.taskSearchString.toLowerCase())));
-      //{ x.Task}).map(y=>y.Task);
-      //String(x.Task.toLowerCase()).startsWith(this.taskSearchString); //&&
-    // this.filteredTask = this.filteredTask.filter(x => { if(x.Task!=null){
-    //  return x.Task.toLowerCase().startsWith(this.taskSearchString); //&&
-        //x.Parent_Task.toLowerCase().startsWith(this.parentSearchString)
-    //});
+    this.filteredTask = this.filteredTask.filter(x => Object.keys(x).some(y =>
+      String(x[y]).toLowerCase().includes(this.taskSearchString.toLowerCase())));
+
     console.log(this.filteredTask);
-    // if (this.priorityFromSearchString > 0) {
-    //   this.filteredTask = this.filteredTask.filter(x => {
-    //     x.Task.toLowerCase().startsWith(this.taskSearchString) &&
-    //       x.Parent_Task.toLowerCase().startsWith(this.parentSearchString) &&
-    //       //Number.isInteger(x.Priority as number)
-    //       x.Priority.toString().toLowerCase().startsWith(this.parentSearchString)
-    //   });
-    //   console.log(this.filteredTask);
-    // }
 
     return this.filteredTask;
   }

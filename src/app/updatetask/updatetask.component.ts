@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router,ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { TaskmanagerService } from 'src/app/taskmanager.service';
 import { Task } from 'src/app/model/task';
 
@@ -10,20 +10,32 @@ import { Task } from 'src/app/model/task';
 })
 export class UpdatetaskComponent implements OnInit {
   taskDetails: Task;
-  updateTaskId:number;
-  updateParentTaskId:number;
+  updateTaskId: number = 0;
+  updateParentTaskId: number = 0;
   public taskDetail; priority; parentDetails; startDate; endDate;
-  constructor(private taskmanagerService: TaskmanagerService, private router: Router, private activatedRoute:ActivatedRoute) { }
+  constructor(private taskmanagerService: TaskmanagerService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(params=>{
-    this.updateTaskId=params['id'],
-    this.updateParentTaskId=params['pid']});
+    let updateTask = this.taskmanagerService.currentTaskDetails;
+    if (updateTask != undefined) {
+      this.updateTaskId = updateTask.Task_ID;
+      this.updateParentTaskId = updateTask.Parent_ID;
+      this.taskDetail = updateTask.Task;
+      this.parentDetails = updateTask.Parent_Task;
+      this.priority = updateTask.Priority;
+      this.startDate = updateTask.Start_Date;
+      this.endDate = updateTask.End_Date;
+    }
+    console.log(this.taskDetail);
+    this.activatedRoute.params.subscribe(params => {
+      this.updateTaskId = params['id'],
+        this.updateParentTaskId = params['pid']
+    });
     console.log(this.updateTaskId);
     console.log(this.updateParentTaskId);
   }
 
-  public updateTaskDetails(taskform,taskList) {
+  public updateTaskDetails(taskform, taskList) {
 
     this.taskDetails = {
       Task_ID: this.updateTaskId, Parent_ID: this.updateParentTaskId, Task: taskList.taskDetail, Parent_Task: taskList.parentDetails,
@@ -33,11 +45,12 @@ export class UpdatetaskComponent implements OnInit {
     }
 
     this.taskmanagerService.updateTaskDetails(this.taskDetails)
-    .subscribe(
-      taskList=>{
-        console.log("Updated successfully...");
-        taskform.reset();
-        this.router.navigate(['/viewtask']);
-      });
+      .subscribe(
+        taskList => {
+          console.log("Updated successfully...");
+          alert("Task updated successfully");
+          taskform.reset();
+          this.router.navigate(['/viewtask']);
+        });
   }
 }

@@ -7,6 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'TaskManagerUI';
-  // UpdateTaskID:number=0;
-  // UpdateParentTaskID:number=0;
 }

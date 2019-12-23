@@ -8,6 +8,8 @@ import { UpdatetaskComponent } from './updatetask/updatetask.component';
 import { ViewtaskComponent } from './viewtask/viewtask.component';
 import { RouterModule } from '@angular/router';
 import {FormsModule } from '@angular/forms';
+import {HashLocationStrategy,LocationStrategy} from '@angular/common';
+import { Task } from './model/task';
 
 @NgModule({
   declarations: [
@@ -25,9 +27,10 @@ import {FormsModule } from '@angular/forms';
       {path: 'addtask', component: AddtaskComponent},
       {path:'', redirectTo:'addtask', pathMatch: 'full'},
       {path: 'viewtask', component: ViewtaskComponent},
-      {path: 'updatetask/:id/:pid', component: UpdatetaskComponent}]),
+      {path: 'updatetask', component: UpdatetaskComponent}],{useHash:true}),
+      // {path: 'updatetask/:id/:pid', component: UpdatetaskComponent}],{useHash:true}),
   ],
-  providers: [],
+  providers: [{provide:LocationStrategy,useClass:HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

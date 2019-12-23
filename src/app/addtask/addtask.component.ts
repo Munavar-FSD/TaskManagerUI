@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TaskmanagerService } from 'src/app/taskmanager.service';
 import { Task } from 'src/app/model/task';
+import { Alert } from 'selenium-webdriver';
 
 @Component({
   selector: 'app-addtask',
@@ -31,7 +32,8 @@ export class AddtaskComponent implements OnInit {
     this.taskmanagerService.addTaskDetails(this.taskDetails)
       .subscribe(
         taskList => {
-          console.log("Saved successfully...");
+          console.log("Saved successfully..");
+          alert("Task saved successfully..");
           taskform.reset();
         });
   }

@@ -36,16 +36,16 @@
         </div>
         <div class="col-md-3">
             <div class="form-group">
-                <label for="startDate" class="col-sm-5 col-form-label">Start Date</label>
-                <div class="col-sm-7 padding-align">
+                <label for="startDate" class="col-sm-2 col-form-label">Start Date</label>
+                <div class="col-sm-10 padding-align">
                     <input type="date" class="form-control date-width" style="width:100%" id=startDate (input)="filterSearchByDate($event.target.value)" />
                 </div>
             </div>
         </div>
         <div class="col-md-3">
             <div class="form-group">
-                <label for="endDate" class="col-sm-5 col-form-label">End Date</label>
-                <div class="col-sm-7 padding-align">
+                <label for="endDate" class="col-sm-2 col-form-label">End Date</label>
+                <div class="col-sm-10 padding-align">
                     <input type="date" class="form-control date-width" style="width:100%" id=endDate />
                 </div>
             </div>
@@ -67,7 +67,6 @@
         </tr>
     </thead>
     <tbody>
-        <!-- <tr *ngFor='let task of tasks'> -->
         <tr *ngFor='let task of filteredTask'>
             <td></td>
             <td>
@@ -86,109 +85,12 @@
             <td>
                 <div class="form-group">
                     <div class="form-group">
-                        <button class="btn btn-secondary btn-sm mr-2" [routerLink]="['/updatetask',task.Task_ID,task.Parent_ID]">Edit </button>
+                            <button class="btn btn-secondary btn-sm mr-2" (click)="onUpdate(task.Task_ID)">Edit </button>
                         <button class="btn btn-secondary btn-sm" (click)="DeleteTask(task.Task_ID)">End Task </button>
                     </div>
                 </div>
             </td>
         </tr>
-        <!-- <tr>
-            <td></td>
-            <td>
-                <div class="card">
-                    <div class="card-body">Task002</div>
-                </div>
-            </td>
-            <td>
-                <div class="card" style="width:12rem">
-                    <div class="card-body">Parent002</div>
-                </div>
-            </td>
-            <td>7</td>
-            <td>12/05/2019</td>
-            <td>12/11/2019</td>
-            <td>
-                <div class="form-group">
-                    <div class="form-group">
-                        <button class="btn btn-secondary btn-sm mr-2" [routerLink]="['/updatetask']">Edit </button> 
-                        <button class="btn btn-secondary btn-sm" (click)="DeleteTask('1')">End Task </button>
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <div class="card">
-                    <div class="card-body">Task003</div>
-                </div>
-            </td>
-            <td>
-                <div class="card" style="width:12rem">
-                    <div class="card-body">Parent003</div>
-                </div>
-            </td>
-            <td>7</td>
-            <td>12/05/2019</td>
-            <td>12/11/2019</td>
-            <td>
-                <div class="form-group">
-                    <div class="form-group">
-                        <button class="btn btn-secondary btn-sm mr-2" [routerLink]="['/updatetask']">Edit </button> 
-                        <button class="btn btn-secondary btn-sm" (click)="DeleteTask('1')">End Task </button>
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <div class="card">
-                    <div class="card-body">Task004</div>
-                </div>
-            </td>
-            <td>
-                <div class="card" style="width:12rem">
-                    <div class="card-body">Parent004</div>
-                </div>
-            </td>
-            <td>7</td>
-            <td>12/02/2019</td>
-            <td>12/11/2019</td>
-            <td>
-                <div class="form-group">
-                    <div class="form-group">
-                        <button class="btn btn-secondary btn-sm mr-2" [routerLink]="['/updatetask']">Edit </button> 
-                        <button class="btn btn-secondary btn-sm" (click)="DeleteTask('1')">End Task </button>
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <div class="card">
-                    <div class="card-body">Task005</div>
-                </div>
-            </td>
-            <td>
-                <div class="card" style="width:12rem">
-                    <div class="card-body">Parent005</div>
-                </div>
-            </td>
-            <td>11</td>
-            <td>12/07/2019</td>
-            <td>12/09/2019</td>
-            <td>
-                <div class="form-group">
-                    <div class="form-group">
-                        <button class="btn btn-secondary btn-sm mr-2" [routerLink]="['/updatetask']">Edit </button> 
-                        <button class="btn btn-secondary btn-sm" (click)="DeleteTask('1')">End Task </button>
-                    </div>
-                </div>
-            </td>
-        </tr>
-    -->
     </tbody>
 </table>
 <router-outlet></router-outlet>

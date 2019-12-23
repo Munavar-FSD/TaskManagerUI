@@ -18,7 +18,8 @@ describe('UpdatetaskComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule,FormsModule,HttpClientTestingModule],
-      declarations: [ UpdatetaskComponent ]
+      declarations: [ UpdatetaskComponent ],
+      providers: [TaskmanagerService]
     })
     .compileComponents();
   }));
