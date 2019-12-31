@@ -12,8 +12,8 @@ import { Task } from "../app/model/task";
 export class TaskmanagerService {
 
   public currentTaskDetails:Task;
-  private url = "http://localhost:8089/api/Task/";
-  //private url = "http://localhost:50673/api/Task/";
+  //private url = "http://localhost:8089/api/Task/";
+  private url = "http://localhost:50673/api/Task/";
 
 
   constructor(private http: HttpClient) {

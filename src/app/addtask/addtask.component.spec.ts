@@ -34,9 +34,5 @@ describe('AddtaskComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
   
-  // it(`form should be invalid`, async(()=>{
-  //   expect(component.addTaskDetails).toEqual(`add task`);
-  // }));
 });

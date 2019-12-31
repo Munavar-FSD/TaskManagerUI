@@ -15,7 +15,7 @@ export class ViewtaskComponent implements OnInit {
   priorityFromSearchString: number = 0;
   priorityToSearchString: number = 0;
   filteredTask: Task[] = [];
-
+  interval: any;
   constructor(private taskmanagerService: TaskmanagerService, private activatedRoute: ActivatedRoute, private route: Router) { }
 
   ngOnInit() {
@@ -49,8 +49,19 @@ export class ViewtaskComponent implements OnInit {
           //alert("Task deleted successfully");
         });
 
-    this.GetTaskDetails();
+    this.interval = setInterval(() => {
+      this.taskmanagerService.getTaskDetails()
+        .subscribe(
+          taskList => {
+            this.tasks = taskList;
+            this.filteredTask = taskList;
+            console.log(this.tasks);
+            console.log(taskList);
+          })
+    },5000);
+
     alert("Task deleted successfully");
+    this.route.navigate(['/viewtask']);
   }
 
   onSearchTaskManager(etaskName, eParentName, ePriority) {
